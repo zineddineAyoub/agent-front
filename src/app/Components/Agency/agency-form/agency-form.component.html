@@ -1,0 +1,47 @@
+<div class="stylediv"></div>
+<div class="main-content marleftCadre">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card  ">
+                    <div class="card-header colorStyleCadre marleft ">
+                        <h4 class="card-title  text-white ">Ajouter une Agence </h4>
+                    </div>
+                    <div class="card-body ">
+                        <form [formGroup]="FormulaireControl" (ngSubmit)="onSubmit()">
+                            <h4 class="styleh4">Les informations de l'agence </h4>
+                            <hr>
+                          
+                                <div class="form-group mb-4">
+                                <label>Nom Agence*</label>
+                                <input type="text" class="form-control" placeholder="Nom Agence"
+                                formControlName="name">
+
+                            <div *ngIf=" send &&  name.invalid" class="text-danger">
+                              Nom Agence est obligatoire*
+                            </div>
+                            </div>
+
+                            <div class="form-group mt-4">
+                              <label>Adresse Agence*</label>
+                              <input type="text" class="form-control" placeholder="Adresse Agence"
+                              formControlName="address">
+
+                          <div *ngIf=" send &&  address.invalid" class="text-danger">
+                            Adresse Agence est obligatoire*
+                          </div>
+                          </div>
+                            
+                            <br><br>
+                            <button class="btn colorStyle w-100" type="submit" (click)="SendChange()"><span>Ajouter un
+                                    client</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

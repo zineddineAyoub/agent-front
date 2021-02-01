@@ -1,0 +1,41 @@
+
+<div class="main-content">
+  <div class="">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card cardStyle">
+                  <div class="fresh-table full-color-azure">
+
+                   <div class="fixed-table-toolbar">
+
+                 <div class="pull-right search input-group">
+                   <input class="form-control search-input" type="search" placeholder="Rechercher nom agence" autocomplete="off">
+                 </div>
+               </div>
+                   <table class="table m-3">
+                     <thead>
+                       <th data-field="id">ID</th>
+                       <th >Nom</th>
+                       <th>CIN</th>
+                       <th >Telephone</th>
+                       <th >Email</th>
+                       <th>Agence</th>
+                       <th>Action</th>
+                       </thead>
+                       <tbody>
+                        <tr *ngFor='let agent of listAgent ; let i = index'>
+                         <td> {{i+1}}</td>
+                         <td>{{agent.first_name}} {{agent.last_name}}</td>
+                         <td>{{agent.identity_number}}</td>
+                         <td>{{agent.phone_number}}</td>
+                         <td>{{agent.email}}</td>
+                         <td *ngIf="agent.agency != null" >{{agent.agency.name}}</td>
+                         <td *ngIf="agent.agency == null ">  </td>
+                         <td>
+                           <button (click) = "DeleteAgent(agent.id)"> DELETE </button>
+                          <a routerLink="/updateAgent/{{agent.id}}">UPDATE</a>
+                         </td>
+                        </tr>
+                      </tbody>
+                   </table>
+                 </div>

@@ -1,0 +1,243 @@
+
+<div class="main-content">
+   <div class="">
+       <div class="row">
+           <div class="col-md-12">
+               <div class="card cardStyle">
+                   <div class="fresh-table full-color-azure">
+
+                    <div class="fixed-table-toolbar">
+
+                  <div class="pull-right search input-group">
+                    <input class="form-control search-input" type="search" placeholder="Rechercher nom agence" autocomplete="off">
+                  </div>
+                </div>
+                    <table class="table">
+                      <thead>
+                        <th data-field="id">ID</th>
+                        <th data-field="name" data-sortable="true">Name</th>
+                        <th data-field="salary" data-sortable="true">Salary</th>
+                        </thead>
+                      <tbody>
+                        <tr *ngFor='let agency of listAgency; let i = index'>
+                          <td> {{i+1}}</td>
+
+                          <td>{{agency.name}}</td>
+
+                         <td>{{agency.address}}</td>
+                          <td></td>
+                        </tr>
+
+
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                   <!--
+                   <div class="card-body">
+
+                                <div class="input-group md-form form-sm form-2 pl-0">
+                                       <input class="form-control my-0 py-1 black-border"  type="text"
+                                           placeholder="Chercher par designation..." aria-label="Search">
+                                           <button mat-raised-button type="button" class="btn btn-white btn-round btn-just-icon">
+                                               <i class="material-icons text-white "  style="background-color:black;">search</i>
+                                               <div class="ripple-container"></div>
+                                           </button>
+                                   </div>
+
+                                   <br>
+                                   <table id="example" class="table  table-striped table-sm " cellspacing="0" width="100%">
+
+                                       <thead  class="font-weight-bold colorStyleTable  text-black" >
+
+
+
+                                           <tr scope="row">
+
+                                               <th  scope="col" class="font-weight-bold">Nom Agence</th>
+                                               <th  scope="col" class="font-weight-bold">Adresse</th>
+                                               <th scope="col"  class="font-weight-bold ">Ajouter un client
+                                                       <i class="fa fa-plus-circle fa-lg colorText align-middle" aria-hidden="true"
+                                                                aria-hidden="true"  routerLink="/ajoutClient" ></i></th>
+                                           </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr *ngFor='let agency of listAgency'>
+
+                                               <td>{{agency.name}}</td>
+
+                                               <td>{{agency.address}}</td>
+                                               <td style="padding-left: 25px;">
+                                                <a class="btn bg-light px-1 p-1 ml-1"><i class="fa fa-pencil fa-2x colorText"
+                                                    style="cursor: pointer;" (click)="onSelectUpdate(agency)"
+                                                    data-toggle="modal" data-target="#modalUpdate"></i></a>
+                                                   <a class="btn bg-light px-1 p-1 ml-1"><i class="fa fa-trash fa-2x colorText" style="cursor: pointer;"   (click)="onSelectDelete(agency)" data-toggle="modal" data-target="#modalDelete"></i></a>
+
+                                               </td>
+                                           </tr>
+
+                                       </tbody>
+                                   </table>
+
+                               </div>
+
+-->
+
+
+                               <!--  <pagination-controls (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant">
+                               </pagination-controls>
+
+
+                           </div>
+                           -->
+
+                          <!--<div id="Add" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Row information</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Fermer</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div bsModal #Update="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+                    aria-labelledby="AddLabel" aria-hidden="true">
+                    <div class="modal-dialog bg-dark" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header  bg-dark">
+                                <h4 class="modal-title text-white">Modifier les informations le produit</h4>
+                                <button type="button" class="close" (click)="Update.hide()" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body horizontal-scrollable" style="height:550px;">
+                                <form [formGroup]="FormulaireControl" (ngSubmit)="onSubmit()">
+                                    <div class="form-group">
+                                       <label>Titre de produit</label>
+                                        <input type="text" class="form-control" placeholder="Titre"
+                                            formControlName="libelle">
+
+                                        <div *ngIf=" send &&  libelle.invalid" class="text-danger">
+                                            Le champs le titre de produit est obligatoire*
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Le choix de type de produit</label>
+                                        <select class="form-control selectpicker"  [compareWith]="compareFn"  formControlName="typeProduit">
+                                            <option value="éléctromenager">éléctromenager</option>
+                                            <option value="cosmétique">cosmétique</option>
+                                            <option value="mobilier">mobilier</option>
+                                            <option value="transport">transport</option>
+                                        </select>
+
+                                        <div *ngIf="send &&  maitreOuvrage.invalid" class="text-danger">
+                                            Le champs type de produit est obligatoire*
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>La description de produit</label>
+                                        <input type="text" class="form-control"  placeholder="La description" formControlName="description">
+
+                                        <div *ngIf="send &&  description.invalid" class="text-danger">
+                                            Le champs description de produit est obligatoire*
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bgColor text-white"
+                                                id="inputGroupFileAddon01">Upload</span>
+                                        </div>
+                                        <div class="custom-file ">
+                                            <input type="file" class="custom-file-input  " id="inputGroupFile01"
+                                                aria-describedby="inputGroupFileAddon01"
+                                                (change)="onFileChange($event)">
+                                            <label class="custom-file-label" for="inputGroupFile01">La photo a
+                                                joindre</label>
+                                        </div>
+                                    </div>
+                                    <img src='../../../assets/Products/{{ProSelect.photoPath}}'
+                                                style="width:100px;height:100px;" />
+                                    <div class="form-group">
+                                        <label>Le prix de produit</label>
+                                        <input type="text" class="form-control"  placeholder="Le prix de produit" formControlName="prix">
+
+                                        <div *ngIf="send &&  prix.invalid" class="text-danger">
+                                            Le champs prix de produit est obligatoire*
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <button class="btn bgColor w-100" type="submit" (click)="SendChange()"><span>Modifier le
+                                            produit&ensp; &ensp; &ensp;<i class="fa fa-shopping-cart" aria-hidden="true"></i></span></button>
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    (click)="Update.hide()">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                        <div bsModal #Delete="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+                        aria-labelledby="AddLabel" aria-hidden="true">
+                        <div class="modal-dialog bg-dark" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-dark">
+                                    <h4 class="modal-title text-white">Voulez vous vraiment Supprimer le Produit?</h4>
+                                    <button type="button" class="close" (click)="Delete.hide()"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="modal-body">
+                                        <form (ngSubmit)="onSubmitDelete()">
+                                            <p *ngIf="userSelectDelete!=null">Confirmer la suppression
+                                                de Produit {{produitSelectDelete.libelle}}
+                                            </p>
+                                            <button class="btn btn-dark w-100" type="submit"><span>Supprimer
+                                                    le Produit</span></button>
+                                        </form>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            (click)="Delete.hide()">Fermer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+-->
+
+
+
+            </div>
+        </div>
+    </div>
+
+

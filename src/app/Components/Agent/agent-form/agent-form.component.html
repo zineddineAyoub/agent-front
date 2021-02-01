@@ -1,0 +1,110 @@
+<div class="stylediv"></div>
+<div class="main-content marleftCadre">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card  ">
+                    <div class="card-header colorStyleCadre marleft ">
+                        <h4 class="card-title  text-white ">Ajouter un Agent </h4>
+                    </div>
+                    <div class="card-body ">
+                        <form [formGroup]="FormulaireControl" (ngSubmit)="onSubmit()" ngNativeValidate >
+                            <h4 class="styleh4">Les informations personelles </h4>
+                            <hr>
+                            <div class="input-group  mb-3">
+
+                              <input type="text" class="form-control" placeholder="Nom*"
+                                    formControlName="last_name" >
+
+
+                                <input type="text" class="form-control" placeholder="Prénom*"
+                                    formControlName="first_name" >
+
+
+                            </div>
+
+
+
+                            <div class="input-group  mb-3">
+
+
+                              <select  class="form-control" aria-placeholder="Pièce d'identité"  formControlName="identity_document" >
+                                <option value="" selected disabled>Pièce d'identité</option>
+                                <option  value="cin">CIN</option>
+                                <option value="passeport">PassePort</option>
+                              </select>
+
+                                <input type="text" class="form-control" placeholder="N° pièce identité *" formControlName="identity_number" >
+
+
+                            </div>
+
+                            <div class="input-group  mb-3">
+                                <input type="text" class="form-control" placeholder="Date de naissance" formControlName="birth_day">
+
+                                <input type="text" class="form-control" placeholder="Adresse*" formControlName="address" >
+
+                            </div>
+
+
+                            <div class="input-group  mb-3">
+
+                              <input type="text" class="form-control" placeholder="Email*"
+                                    formControlName="email" >
+
+
+                                <input type="text" *ngIf="update===false" class="form-control" placeholder="Confirmation Email*"
+                                    formControlName="confirm_email" >
+
+
+                            </div>
+
+                            <div class="input-group  mb-3">
+
+                              <input type="text" class="form-control" placeholder="Numero de téléphone*"
+                                    formControlName="phone_number" >
+
+
+                                <input type="text" class="form-control" placeholder="N° registre de commerce *"
+                                    formControlName="commerce_registration">
+
+                            </div>
+
+                            <div class="input-group  mb-3">
+
+                              <select  class="form-control" aria-placeholder="Pièce d'identité"  formControlName="id_agence" >
+                                <option value="" selected disabled>Nom Agence</option>
+                                <option *ngFor = "let agence of listAgencies" value="{{agence.id}}">{{agence.name}}</option>
+                                </select>
+
+                              <input type="text" class="form-control" placeholder="Numero de patente*"
+                                    formControlName="patente_number" >
+
+                            </div>
+
+                            <h4 class="styleh4">Les Informations de l'account </h4>
+                            <hr>
+
+                            <div class="input-group mb-3" *ngFor="let field of fields" >
+
+                                  <input type="text" class="form-control" placeholder="Description"
+                                  [formControlName]="field.namep" >
+
+                                  <input  (change)="fileEvent($event)" id="quantity" type="file" placeholder ="Document" class="form-control" >
+
+                                <button class="btn btn-light" type="button"  (click)="addDocument()"> + </button>
+
+
+                            </div>
+
+                            <br><br>
+                            <button class="btn colorStyle w-100" type="submit" (click)="SendChange()"><span>Ajouter un
+                                    client</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
