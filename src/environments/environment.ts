@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urlAgent : "https://ensapay-agent-service.herokuapp.com/agent",
+  urlAgence : "https://ensapay-agent-service.herokuapp.com/agency"
 };
 
 /*

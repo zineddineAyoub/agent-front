@@ -1,12 +1,13 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AgentService {
-  link = "https://ensapay-agent-service.herokuapp.com/agent";
+  //link = "https://ensapay-agent-service.herokuapp.com/agent";
+  link = environment.urlAgent;
   constructor(private http : HttpClient)  { }
 
   addAgent(agentDetails){
