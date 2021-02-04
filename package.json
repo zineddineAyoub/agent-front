@@ -2,13 +2,14 @@
   "name": "ensapay-agent-frontend",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild" : "ng build --prod && npm install -g http-server-spa",
-    "ng": "ng",
-     "start" : "http-server-spa dist/ensapay-agent-frontend index.html $PORT",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "_heroku":      "https://ensapay-agent-front.herokuapp.com/",
+    "start":        "http-server dist/",
+    "lint":         "tslint \"src/**/*.ts\"",
+    "test":         "ng test",
+    "pree2e":       "webdriver-manager update",
+    "e2e":          "protractor",
+    "preinstall":   "npm install -g http-server",
+    "postinstall":  "ng build --prod"
   },
   "engines":{
     "node" : "12.13.0",
