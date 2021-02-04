@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AgenceService {
- // link = "https://ensapay-agent-service.herokuapp.com/agency";
- link = "http://localhost:8080/agency";
+  link = "https://ensapay-agent-service.herokuapp.com/agency";
+ //link = "http://localhost:8080/agency";
   constructor(private http : HttpClient) { }
 
   listAgencies(){
