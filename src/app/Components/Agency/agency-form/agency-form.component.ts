@@ -30,9 +30,10 @@ export class AgencyFormComponent implements OnInit {
   }
 
   onSubmit(){
-    this.send = true;
+
    console.log( this.FormulaireControl.value);
    this.agencyService.addAgency(this.FormulaireControl.value).subscribe((data)=>{
+    this.send = true;
      console.log("ADDED");
 
    });

@@ -3,22 +3,26 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <div class="card  ">
+                <div class="card m-0 mt-2">
+                  <div *ngIf="send == true"class="alert alert-success fade show">
+                    Agent enregistré avec succès
+
+                </div>
                     <div class="card-header colorStyleCadre marleft ">
                         <h4 class="card-title  text-white ">Ajouter un Agent </h4>
                     </div>
-                    <div class="card-body ">
+                    <div class="card-body bg ">
                         <form [formGroup]="FormulaireControl" (ngSubmit)="onSubmit()" ngNativeValidate >
                             <h4 class="styleh4">Les informations personelles </h4>
                             <hr>
                             <div class="input-group  mb-3">
 
-                              <input type="text" class="form-control" placeholder="Nom*"
+                              <input type="text" class="form-control" placeholder="Nom*" required
                                     formControlName="last_name" >
 
 
                                 <input type="text" class="form-control" placeholder="Prénom*"
-                                    formControlName="first_name" >
+                                    formControlName="first_name" required >
 
 
                             </div>
@@ -28,32 +32,28 @@
                             <div class="input-group  mb-3">
 
 
-                              <select  class="form-control" aria-placeholder="Pièce d'identité"  formControlName="identity_document" >
+                              <select  class="form-control" aria-placeholder="Pièce d'identité" required formControlName="identity_document" >
                                 <option value="" selected disabled>Pièce d'identité</option>
                                 <option  value="cin">CIN</option>
                                 <option value="passeport">PassePort</option>
                               </select>
 
-                                <input type="text" class="form-control" placeholder="N° pièce identité *" formControlName="identity_number" >
+                                <input type="number" class="form-control" required placeholder="N° pièce identité *" formControlName="identity_number" >
 
 
                             </div>
 
                             <div class="input-group  mb-3">
-                                <input type="text" class="form-control" placeholder="Date de naissance" formControlName="birth_day">
-
-                                <input type="text" class="form-control" placeholder="Adresse*" formControlName="address" >
-
+                                <input  type="text" class="form-control" placeholder="Date de Naissance" formControlName="birth_day" onfocus="(this.type='date')" formControlName="address" />
+                                <input type="text" class="form-control" required placeholder="Adresse*" formControlName="address" >
                             </div>
-
 
                             <div class="input-group  mb-3">
 
-                              <input type="text" class="form-control" placeholder="Email*"
+                              <input type="email" class="form-control" required placeholder="Email*"
                                     formControlName="email" >
 
-
-                                <input type="text" *ngIf="update===false" class="form-control" placeholder="Confirmation Email*"
+                                <input type="text" *ngIf="update===false" required class="form-control" placeholder="Confirmation Email*"
                                     formControlName="confirm_email" >
 
 
@@ -61,45 +61,56 @@
 
                             <div class="input-group  mb-3">
 
-                              <input type="text" class="form-control" placeholder="Numero de téléphone*"
+                              <input type="text" class="form-control" required placeholder="Numero de téléphone*"
                                     formControlName="phone_number" >
 
 
-                                <input type="text" class="form-control" placeholder="N° registre de commerce *"
+                                <input type="text" class="form-control"  required placeholder="N° registre de commerce *"
                                     formControlName="commerce_registration">
 
                             </div>
 
                             <div class="input-group  mb-3">
 
-                              <select  class="form-control" aria-placeholder="Pièce d'identité"  formControlName="id_agence" >
+                              <select  class="form-control"  required aria-placeholder="Pièce d'identité"  formControlName="id_agence" >
                                 <option value="" selected disabled>Nom Agence</option>
                                 <option *ngFor = "let agence of listAgencies" value="{{agence.id}}">{{agence.name}}</option>
                                 </select>
 
-                              <input type="text" class="form-control" placeholder="Numero de patente*"
+                              <input type="number" class="form-control" required placeholder="Numero de patente*"
                                     formControlName="patente_number" >
 
                             </div>
 
-                            <h4 class="styleh4">Les Informations de l'account </h4>
+                            <h4 class="styleh4">Attacher un ficher </h4>
                             <hr>
 
-                            <div class="input-group mb-3" *ngFor="let field of fields" >
+                            <div class="input-group mb-3"  >
 
                                   <input type="text" class="form-control" placeholder="Description"
-                                  [formControlName]="field.namep" >
+                                  formControlName="description" >
 
-                                  <input  (change)="fileEvent($event)" id="quantity" type="file" placeholder ="Document" class="form-control" >
-
-                                <button class="btn btn-light" type="button"  (click)="addDocument()"> + </button>
-
+                                  <input  (change)="fileEvent($event)" id="quantity" type="file" placeholder ="Document" formControlName="addedFile" class="form-control" >
 
                             </div>
+                            <div *ngIf="update===true" class="row">
+                              <div class="col-5" *ngFor="let readfile of readfiles">
+                             <div class="card" *ngIf="readfile.file!==null" >
+                                <img class="card-img-top" *ngIf="readfile.file!== null" src="{{'data:image/jpg;base64,' +readfile.file.data}}" alt="Card image cap">
+                                <div class="card-body">
+                                  <h6 class="card-title">Description</h6>
+                                  <p class="card-text">{{readfile.description}}</p>
+                                  <button type="button" class="btn btn-primary" (click) = "deleteFile(readfile.id)">Delete</button>
+                                </div>
+                              </div>
+                            </div>
+                            </div>
+
+
 
                             <br><br>
-                            <button class="btn colorStyle w-100" type="submit" (click)="SendChange()"><span>Ajouter un
-                                    client</span></button>
+                            <button class="btn colorStyle w-100" type="submit" ><span>Enregistrer
+                                    l'agent</span></button>
                         </form>
                     </div>
                 </div>

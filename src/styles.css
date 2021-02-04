@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+.bg{
+  background-color:rgb(143, 148, 251,0.1);
+}
+
+tr,td,th{
+  text-align: center;
+}
+
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.stylediv{
+
+  background: url("./assets/img/CaptureLamp2.PNG");
+  background-repeat: no-repeat; /* Do not repeat the image */
+  height: 800px;
+  width: 200px;
+  float: left;
+}
+
+
+.backColor{
+  background-color:rgb(1, 1, 31);
+}
+.colorText{
+  color:  rgb(143, 148, 251);
+}
+.main-head{
+  height: 150px;
+  background: #FFF;
+
+}
+
+.marleft{
+  text-align: center;
+  background-color: rgb(143, 148, 251);
+}
+.colorStyleTable{
+  background-color: rgb(143, 148, 251);
+}
+.cardStyle {
+  width: 150%;
+}

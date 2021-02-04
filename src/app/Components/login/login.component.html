@@ -1,0 +1,42 @@
+<div class="stylediv"></div>
+<div class="main-content marleftCadre ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card m-0 mt-2">
+                    <div class="card-header colorStyleCadre marleft ">
+                        <h4 class="card-title  text-white ">Login </h4>
+                    </div>
+                    <div class="card-body bg">
+                        <form [formGroup]="FormulaireControl" (ngSubmit)="onSubmit()" style="text-align: center;">
+                            <h4 class="styleh4">Veuiller saisir votre Login et mot de passe </h4>
+                            <hr>
+
+                                <div class="form-group mb-4">
+                                <label>Login*</label>
+                                <input type="text" class="form-control" placeholder="Nom Agence"
+                                formControlName="login">
+
+
+                            </div>
+
+                            <div class="form-group mt-4">
+                              <label>Mot de passe*</label>
+                              <input type="text" class="form-control" placeholder="Adresse Agence"
+                              formControlName="password">
+
+
+                          </div>
+
+                            <br><br>
+                            <button class="btn colorStyle w-100" type="submit" ><span>Se connecter</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

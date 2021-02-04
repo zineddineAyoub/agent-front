@@ -10,6 +10,7 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import { AgentFormComponent } from './Components/Agent/agent-form/agent-form.component';
 import { AgentListComponent } from './Components/Agent/agent-list/agent-list.component';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AgentListComponent } from './Components/Agent/agent-list/agent-list.com
     AgencyListComponent,
     NavBarComponent,
     AgentFormComponent,
-    AgentListComponent
+    AgentListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,11 +28,12 @@ import { AgentListComponent } from './Components/Agent/agent-list/agent-list.com
     ReactiveFormsModule,
 
     RouterModule.forRoot([
-    { path: 'ajouterAgence', component: AgencyFormComponent },
-    { path: 'listAgence', component: AgencyListComponent },
-    { path: 'ajouterAgent', component: AgentFormComponent },
+    { path : 'ajouterAgence', component: AgencyFormComponent },
+    { path : 'listAgence', component: AgencyListComponent },
+    { path : 'ajouterAgent', component: AgentFormComponent },
     { path : 'listAgent' , component : AgentListComponent},
-    { path : 'updateAgent/:id', component : AgentFormComponent}
+    { path : 'updateAgent/:id', component : AgentFormComponent},
+    { path : 'login',component : LoginComponent}
 ])
   ],
   providers: [],

@@ -21,12 +21,14 @@ export class AgentListComponent implements OnInit {
   }
 
   DeleteAgent(id_agent){
+    if(confirm("Etes-vous sûr de vouloir supprimer l'agent ?")){
+      this.agentService.deleteAgent(id_agent).subscribe((data)=>{
+        console.log("DLETED");
 
-    this.agentService.deleteAgent(id_agent).subscribe((data)=>{
-      console.log("DLETED");
+        this.listAgent = this.listAgent.filter((agent:Agent)=>agent.id !== id_agent );
+      })
+    }
 
-      this.listAgent = this.listAgent.filter((agent:Agent)=>agent.id !== id_agent );
-    })
   }
 
 

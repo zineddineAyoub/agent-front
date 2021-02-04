@@ -1,19 +1,25 @@
+
 <div class="stylediv"></div>
-<div class="main-content marleftCadre">
+<div class="main-content marleftCadre ">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <div class="card  ">
+                <div class="card m-0 mt-2">
+                  <div *ngIf="send === true" class="alert alert-success fade show" role="alert">
+                    Agence enregistré avec succès
+
+                  </div>
+
                     <div class="card-header colorStyleCadre marleft ">
                         <h4 class="card-title  text-white ">Ajouter une Agence </h4>
                     </div>
-                    <div class="card-body ">
+                    <div class="card-body bg">
                         <form [formGroup]="FormulaireControl" (ngSubmit)="onSubmit()">
                             <h4 class="styleh4">Les informations de l'agence </h4>
                             <hr>
-                          
+
                                 <div class="form-group mb-4">
-                                <label>Nom Agence*</label>
+                                <label class="p-2">Nom Agence*</label>
                                 <input type="text" class="form-control" placeholder="Nom Agence"
                                 formControlName="name">
 
@@ -23,7 +29,7 @@
                             </div>
 
                             <div class="form-group mt-4">
-                              <label>Adresse Agence*</label>
+                              <label class="p-2">Adresse Agence*</label>
                               <input type="text" class="form-control" placeholder="Adresse Agence"
                               formControlName="address">
 
@@ -31,10 +37,10 @@
                             Adresse Agence est obligatoire*
                           </div>
                           </div>
-                            
+
                             <br><br>
-                            <button class="btn colorStyle w-100" type="submit" (click)="SendChange()"><span>Ajouter un
-                                    client</span></button>
+                            <button class="btn colorStyle w-100" type="submit" (click)="SendChange()"><span>Ajouter Agence
+                                    </span></button>
                         </form>
                     </div>
                 </div>

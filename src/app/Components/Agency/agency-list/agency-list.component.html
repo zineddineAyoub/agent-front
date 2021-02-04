@@ -1,17 +1,67 @@
 
+
+<div class="stylediv"></div>
+<div class="main-content marleftCadre">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card m-0 mt-2 ">
+                  <div *ngIf="deleted === true"class="alert alert-success fade show">
+                    Agence supprimé avec succès
+
+                </div>
+
+                <div *ngIf="updated === true"class="alert alert-success  fade show">
+                  Agence modifié avec succès
+
+                </div>
+                    <div class="card-header colorStyleCadre marleft ">
+                        <h4 class="card-title  text-white ">Liste Agence </h4>
+                    </div>
+                    <div class="card-body bg">
+                      <table class="table">
+                        <thead class="m-3">
+                          <th >ID</th>
+                          <th >Nom</th>
+                          <th >Addresse</th>
+                          <th> Action</th>
+                        </thead>
+                        <tbody class="m-3">
+                          <tr *ngFor='let agency of listAgency; let i = index'>
+                          <td> {{i+1}}</td>
+                          <td>{{agency.name}}</td>
+                          <td>{{agency.address}}</td>
+                            <td>
+                              <button type="button" class="btn btn-light" (click)="deleteAgency(agency.id)">
+                                <img src="../../../../assets/img/delete2.png">
+
+                              </button>
+                              <button type="button" data-toggle="modal" class="btn btn-light" data-target="#exampleModal" (click)="displayAgency(agency)">
+                                <img src="../../../../assets/img/edit2.png">
+
+                              </button>
+
+                            </td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--
 <div class="main-content">
    <div class="">
        <div class="row">
            <div class="col-md-12">
                <div class="card cardStyle">
                    <div class="fresh-table full-color-azure">
-
-                    <div class="fixed-table-toolbar">
-
-                  <div class="pull-right search input-group">
-                    <input class="form-control search-input" type="search" placeholder="Rechercher nom agence" autocomplete="off">
-                  </div>
-                </div>
                     <table class="table">
                       <thead>
                         <th data-field="id">ID</th>
@@ -20,19 +70,65 @@
                         </thead>
                       <tbody>
                         <tr *ngFor='let agency of listAgency; let i = index'>
-                          <td> {{i+1}}</td>
+                        <td> {{i+1}}</td>
+                        <td>{{agency.name}}</td>
+                        <td>{{agency.address}}</td>
+                          <td>
+                            <button type="button" class="btn btn-danger" (click)="deleteAgency(agency.id)">SUPPRIMER</button>
+                            <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#exampleModal" (click)="displayAgency(agency)">UPDATE</button>
+                          </td>
 
-                          <td>{{agency.name}}</td>
-
-                         <td>{{agency.address}}</td>
-                          <td></td>
                         </tr>
-
-
-
                       </tbody>
                     </table>
                   </div>
+                -->
+
+                  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">UPDATE AGENCY</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="FormulaireControl" >
+          <h4 class="styleh4">Les informations de l'agence </h4>
+          <hr>
+
+              <div class="form-group mb-4">
+              <label>Nom Agence*</label>
+              <input type="text" class="form-control" placeholder="Nom Agence"
+              formControlName="name">
+
+
+          </div>
+
+          <div class="form-group mt-4">
+            <label>Adresse Agence*</label>
+            <input type="text" class="form-control" placeholder="Adresse Agence"
+            formControlName="address">
+
+        </div>
+         <br><br>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class=" m-3 btn btn-primary" (click)="onSubmit()" data-dismiss="modal" >Enregistrer</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
                    <!--
                    <div class="card-body">
@@ -236,8 +332,5 @@
 
 
 
-            </div>
-        </div>
-    </div>
 
 

@@ -1,41 +1,52 @@
+               <div class="stylediv"></div>
+                 <div class="main-content marleftCadre">
+                     <div class="container-fluid">
+                         <div class="row">
+                             <div class="col">
+                                 <div class="card m-0 mt-2 ">
+                                     <div class="card-header colorStyleCadre marleft ">
+                                         <h4 class="card-title  text-white ">Liste Agence </h4>
+                                     </div>
+                                     <div class="card-body bg">
+                                      <table class="table">
+                                        <thead>
+                                          <th>ID</th>
+                                          <th >Nom</th>
+                                          <th>CIN</th>
+                                          <th >Telephone</th>
+                                          <th>Agence</th>
+                                          <th>Action</th>
+                                          </thead>
+                                          <tbody>
+                                           <tr *ngFor='let agent of listAgent ; let i = index'>
+                                            <td> {{i+1}}</td>
+                                            <td>{{agent.first_name}} {{agent.last_name}}</td>
+                                            <td>{{agent.identity_number}}</td>
+                                            <td>{{agent.phone_number}}</td>
+                                            <td *ngIf="agent.agency != null" >{{agent.agency.name}}</td>
+                                            <td *ngIf="agent.agency == null ">  </td>
+                                            <td>
+                                              <button type="button" class="btn btn-light" (click) = "DeleteAgent(agent.id)">
+                                                <img src="../../../../assets/img/delete2.png">
+                                              </button>
+                                             <a routerLink="/updateAgent/{{agent.id}}">
+                                              <button  class="btn btn-light">
+                                                <img src="../../../../assets/img/edit2.png">
+                                              </button>
+                                             </a>
+                                            </td>
+                                           </tr>
+                                         </tbody>
+                                      </table>
+                                     </div>
+                                 </div>
+                             </div>
 
-<div class="main-content">
-  <div class="">
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card cardStyle">
-                  <div class="fresh-table full-color-azure">
-
-                   <div class="fixed-table-toolbar">
-
-                 <div class="pull-right search input-group">
-                   <input class="form-control search-input" type="search" placeholder="Rechercher nom agence" autocomplete="off">
+                         </div>
+                     </div>
                  </div>
-               </div>
-                   <table class="table m-3">
-                     <thead>
-                       <th data-field="id">ID</th>
-                       <th >Nom</th>
-                       <th>CIN</th>
-                       <th >Telephone</th>
-                       <th >Email</th>
-                       <th>Agence</th>
-                       <th>Action</th>
-                       </thead>
-                       <tbody>
-                        <tr *ngFor='let agent of listAgent ; let i = index'>
-                         <td> {{i+1}}</td>
-                         <td>{{agent.first_name}} {{agent.last_name}}</td>
-                         <td>{{agent.identity_number}}</td>
-                         <td>{{agent.phone_number}}</td>
-                         <td>{{agent.email}}</td>
-                         <td *ngIf="agent.agency != null" >{{agent.agency.name}}</td>
-                         <td *ngIf="agent.agency == null ">  </td>
-                         <td>
-                           <button (click) = "DeleteAgent(agent.id)"> DELETE </button>
-                          <a routerLink="/updateAgent/{{agent.id}}">UPDATE</a>
-                         </td>
-                        </tr>
-                      </tbody>
-                   </table>
-                 </div>
+
+
+
+
+

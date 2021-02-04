@@ -6,10 +6,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AgentService {
-  link = "http://localhost:8080/agent";
+  link = "https://ensapay-agent-service.herokuapp.com/agent";
   constructor(private http : HttpClient)  { }
 
   addAgent(agentDetails){
+    console.log("add Agent Service")
    // console.log("---- ADD AGENT SERVICE ----");
     console.log(agentDetails);
 
@@ -20,9 +21,16 @@ export class AgentService {
         formData.append(key,agentDetails[key]);
     }
 
-    formData.append("description",agentDetails["description1"]);
-    formData.append("file",agentDetails["file1"]);
+   // formData.append("description",agentDetails["description1"]);
 
+    if(agentDetails["file1"]){
+      console.log("NOT EMPTY")
+      formData.append("file",agentDetails["file1"]);
+    }
+
+    else{
+      console.log("EMPTYY");
+    }
    return  this.http.post(this.link,formData);
 
   }
@@ -37,5 +45,9 @@ export class AgentService {
 
   getAgent(id){
     return this.http.get(this.link+"/"+id);
+  }
+
+  deleteFile(id_file){
+    return this.http.delete(this.link+"/file/"+id_file);
   }
 }
