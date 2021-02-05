@@ -22,5 +22,7 @@
 
     </ul>
   </div>
-  <a class="navbar-brand" (click)="logout()">Déconnexion</a>
+  <button *ngIf="service.isLoggedIn()" class="btn btn-outline-light my-2 my-sm-0" (click)="logout()" type="submit">Log Out</button>
+
+
 </nav>

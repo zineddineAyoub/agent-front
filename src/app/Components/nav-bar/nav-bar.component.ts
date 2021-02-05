@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../Services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service : AuthenticationService) { }
 
   ngOnInit(): void {
-    
+
   }
   logout(){
-    
+    this.service.logout();
   }
 }
