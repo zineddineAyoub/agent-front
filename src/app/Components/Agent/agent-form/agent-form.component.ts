@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../../Services/authentication.service';
 import { Files } from './../../../Models/Files';
 import { Agent } from './../../../Models/Agent';
 import { Agency } from './../../../Models/Agency';
@@ -5,7 +6,7 @@ import { AgenceService } from './../../../Services/agence.service';
 import { AgentService } from './../../../Services/agent.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-agent-form',
@@ -20,7 +21,7 @@ export class AgentFormComponent implements OnInit {
   public  products_selected= [];
   update : boolean = false;
 
-  constructor(private agentService : AgentService,private agencyService : AgenceService, private route : ActivatedRoute) { }
+  constructor(private agentService : AgentService,private agencyService : AgenceService, private route : ActivatedRoute,private router : Router,private auth : AuthenticationService) { }
 
   FormulaireControl = new FormGroup({
 
@@ -50,6 +51,7 @@ export class AgentFormComponent implements OnInit {
   listFiles:[];
   id : string;
   readfiles;
+  file;
 
   fileEvent(e){
     console.log(e.target.files[0]);
@@ -58,6 +60,7 @@ export class AgentFormComponent implements OnInit {
 
       this.result.push(this.filedata)
       this.FormulaireControl.value['file1'] =this.filedata;
+      this.file = this.filedata;
       console.log( this.FormulaireControl.value);
 
       console.log("---------------------------------");
@@ -72,6 +75,11 @@ export class AgentFormComponent implements OnInit {
       this.FormulaireControl.addControl(x.namep,new FormControl());
       this.FormulaireControl.addControl(x.nameq,new FormControl());
      });*/
+
+     if(!this.auth.isLoggedIn())
+     {
+       this.router.navigate(['login']);
+     }
 
     this.route.params.subscribe((data)=>{
       console.log(data);
@@ -128,8 +136,9 @@ export class AgentFormComponent implements OnInit {
     console.log("****************");
 
     console.log(this.FormulaireControl.value);
-
-    this.agentService.addAgent(this.FormulaireControl.value).subscribe((data)=>{
+    let newForm = this.FormulaireControl.value;
+    newForm["file1"] = this.file;
+    this.agentService.addAgent(newForm).subscribe((data)=>{
       console.log("your result");
       this.send = true;
       console.log(data);

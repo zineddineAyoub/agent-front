@@ -1,7 +1,9 @@
+import { AuthenticationService } from './../../../Services/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AgenceService } from './../../../Services/agence.service';
 import { Agency } from './../../../Models/Agency';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agency-list',
@@ -11,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class AgencyListComponent implements OnInit {
 
   listAgency:Array<Agency>;
-  constructor(private agencyService : AgenceService) {
+  constructor(private agencyService : AgenceService,private router : Router,private auth : AuthenticationService) {
     this.agencyService.listAgencies().subscribe((data : Array<Agency>)=>{
       this.listAgency = data;
       console.log(data);
@@ -37,6 +39,10 @@ onSubmit(){
 }
 
   ngOnInit(): void {
+    if(!this.auth.isLoggedIn())
+    {
+      this.router.navigate(['login']);
+    }
   }
 
   deleteAgency(id_agency){
