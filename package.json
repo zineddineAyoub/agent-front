@@ -2,17 +2,17 @@
   "name": "ensapay-agent-frontend",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild" : "ng build --prod && npm install -g http-server-spa",
+    "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
     "ng": "ng",
-     "start" : "http-server-spa dist/ensapay-agent-frontend index.html $PORT",
+    "start": "http-server-spa dist/ensapay-agent-frontend index.html $PORT",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "engines":{
-    "node" : "12.13.0",
-    "npm" : "6.12.0"
+  "engines": {
+    "node": "12.13.0",
+    "npm": "6.12.0"
   },
   "private": true,
   "dependencies": {
@@ -21,13 +21,16 @@
     "@angular/compiler": "~9.1.13",
     "@angular/core": "~9.1.13",
     "@angular/forms": "~9.1.13",
+    "@angular/http": "^7.2.16",
     "@angular/platform-browser": "~9.1.13",
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
+    "angular2-jwt": "^0.2.3",
     "rxjs": "~6.5.4",
+    "rxjs-compat": "^6.6.3",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.13",

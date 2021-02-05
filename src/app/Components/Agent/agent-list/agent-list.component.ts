@@ -1,6 +1,8 @@
+import { AuthenticationService } from './../../../Services/authentication.service';
 import { Agent } from './../../../Models/Agent';
 import { AgentService } from './../../../Services/agent.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgentListComponent implements OnInit {
 
-  constructor(private agentService : AgentService) { }
+  constructor(private agentService : AgentService,private router : Router,private auth : AuthenticationService) { }
   listAgent : Array<Agent>;
   ngOnInit(): void {
+
+    if(!this.auth.isLoggedIn())
+    {
+      this.router.navigate(['login']);
+    }
 
     this.agentService.listAgent().subscribe((data : Array<Agent>)=>{
         this.listAgent = data;

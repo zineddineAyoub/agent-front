@@ -33,7 +33,8 @@ import { LoginComponent } from './Components/login/login.component';
     { path : 'ajouterAgent', component: AgentFormComponent },
     { path : 'listAgent' , component : AgentListComponent},
     { path : 'updateAgent/:id', component : AgentFormComponent},
-    { path : 'login',component : LoginComponent}
+    { path : 'login',component : LoginComponent},
+    { path : '',component : LoginComponent}
 ])
   ],
   providers: [],

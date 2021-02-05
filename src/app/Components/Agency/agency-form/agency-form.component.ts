@@ -1,6 +1,8 @@
+import { AuthenticationService } from './../../../Services/authentication.service';
 import { AgenceService } from './../../../Services/agence.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agency-form',
@@ -11,7 +13,7 @@ export class AgencyFormComponent implements OnInit {
 
   send: boolean = false;
 
-  constructor(private agencyService : AgenceService) { }
+  constructor(private agencyService : AgenceService,private router : Router,private auth : AuthenticationService) { }
 
   FormulaireControl = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -27,6 +29,10 @@ export class AgencyFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(!this.auth.isLoggedIn())
+    {
+      this.router.navigate(['login']);
+    }
   }
 
   onSubmit(){

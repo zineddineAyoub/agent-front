@@ -4,7 +4,14 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="collapse navbar-collapse" id="navbarNav" *ngIf="!service.isLoggedIn()">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/login" >Login</a>
+      </li>
+      </ul>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarNav" *ngIf="service.isLoggedIn()">
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/ajouterAgence" >Ajouter Agence</a>
@@ -22,5 +29,7 @@
 
     </ul>
   </div>
-  <a class="navbar-brand" (click)="logout()">Déconnexion</a>
+  <button *ngIf="service.isLoggedIn()" class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()" type="submit">Déconnexion</button>
+
+
 </nav>
